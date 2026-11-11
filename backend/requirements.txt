@@ -1,0 +1,23 @@
+Django==5.0.9
+djangorestframework==3.15.2
+djangorestframework-simplejwt==5.3.1
+psycopg2-binary==2.9.9
+django-cors-headers==4.4.0
+python-decouple==3.8
+
+# Vector database - a completely separate store from Postgres (see
+# apps/common/qdrant_store.py). ":memory:" embedded mode needs no server at
+# all; QDRANT_URL points at a real Qdrant server (docker-compose.yml) when set.
+qdrant-client==1.12.1
+
+# Only imported/called when OPENAI_API_KEY is set (apps/common/ai.py).
+# Without a key, embeddings come from a deterministic stub so the whole
+# pipeline is testable with no network access or API cost.
+openai==1.54.4
+
+gunicorn==23.0.0
+
+# dev/test only (fine to keep in the single requirements file for this
+# demo app; split into base/dev/prod requirement files if this grows)
+pytest==8.3.3
+pytest-django==4.9.0
