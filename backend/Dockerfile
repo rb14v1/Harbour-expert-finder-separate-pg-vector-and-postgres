@@ -14,6 +14,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN adduser --system --uid 10001 --group --no-create-home app \
+    && chown -R app:app /app
+
 EXPOSE 8000
+
+USER app
 
 CMD ["gunicorn", "config.wsgi:application", "--bind", "0.0.0.0:8000"]
